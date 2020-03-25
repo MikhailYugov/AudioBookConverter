@@ -43,7 +43,7 @@ public class Utils {
     public static String formatChapter(int partNumber, Chapter chapter) {
         String chapterFormat = AppProperties.getProperty("chapter_format");
         if (chapterFormat == null) {
-            chapterFormat = "<if(BOOK_NUMBER)> Book <BOOK_NUMBER>. <endif>Chapter <CHAPTER_NUMBER><if(CHAPTER_TITLE)>- <CHAPTER_TITLE><endif> - <DURATION>";
+            chapterFormat = "<CHAPTER_TITLE> - <DURATION>";
             AppProperties.setProperty("chapter_format", chapterFormat);
         }
 

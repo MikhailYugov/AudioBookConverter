@@ -21,10 +21,7 @@ public class Chapter implements Organisable, Convertable {
     }
 
     public String getTitle() {
-        if (rawTitle != null) {
-            return Chapter.this.getNumber() + ":" + rawTitle;
-        }
-        return "Chapter " + getNumber();
+        return details;
     }
 
     public int getNumber() {
@@ -91,7 +88,7 @@ public class Chapter implements Organisable, Convertable {
     }
 
     public String getRawTitle() {
-        return rawTitle;
+        return details;
     }
 
     public void setRawTitle(String rawTitle) {

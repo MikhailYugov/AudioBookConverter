@@ -24,19 +24,14 @@ public class MetadataBuilder {
         metaData.add("major_brand=M4A");
         metaData.add("minor_version=512");
         metaData.add("compatible_brands=isomiso2");
-        metaData.add("title=" + bookInfo.getTitle() + (convertable.isTheOnlyOne() ? "" : ("-" + convertable.getNumber())));
-        metaData.add("artist=" + bookInfo.getWriter());
-        if (StringUtils.isNotBlank(bookInfo.getSeries())) {
-            metaData.add("album=" + bookInfo.getSeries());
-        } else {
-            metaData.add("album=" + bookInfo.getTitle());
-        }
-        metaData.add("composer=" + bookInfo.getNarrator());
-        metaData.add("date=" + bookInfo.getYear());
-        metaData.add("comment=" + bookInfo.getComment());
+        metaData.add("artist=" + ((StringUtils.isBlank(bookInfo.getWriter())) ? "" : bookInfo.getWriter()));
+        metaData.add("album=" + ((StringUtils.isBlank(bookInfo.getSeries())) ? "" : bookInfo.getSeries() + " - ") + bookInfo.getTitle());
+        metaData.add("composer=" + ((StringUtils.isBlank(bookInfo.getNarrator())) ? "" : bookInfo.getNarrator()));
+        metaData.add("date=" + ((StringUtils.isBlank(bookInfo.getYear())) ? "" : bookInfo.getYear()));
+        metaData.add("comment=" + ((StringUtils.isBlank(bookInfo.getComment())) ? "" : bookInfo.getComment()));
         metaData.add("track=" + bookInfo.getBookNumber() + "/" + bookInfo.getTotalTracks());
         metaData.add("media_type=2");
-        metaData.add("genre=" + bookInfo.getGenre());
+        metaData.add("genre=" + ((StringUtils.isBlank(bookInfo.getGenre())) ? "Audiobook" : bookInfo.getGenre()));
         metaData.addAll(convertable.getMetaData(bookInfo));
         String collect = metaData.stream().collect(Collectors.joining(toString()));
         logger.debug(collect);
@@ -45,4 +40,3 @@ public class MetadataBuilder {
     }
 }
 
-        
